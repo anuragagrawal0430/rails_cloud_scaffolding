@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+![Ruby](https://github.com/anuragagrawal0430/rails_cloud_scaffolding/workflows/Ruby/badge.svg)
