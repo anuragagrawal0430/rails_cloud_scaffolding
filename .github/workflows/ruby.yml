@@ -33,7 +33,11 @@ jobs:
     # uses: ruby/setup-ruby@v1
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
-        ruby-version: 2.6   
+        ruby-version: 2.6  
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.13.0
     - name: Setup PostgreSQL
       uses: Harmon758/postgresql-action@v1.0.0
       with:
@@ -41,5 +45,8 @@ jobs:
         postgresql db: rails_cloud_scaffolding_test
     - name: Install dependencies
       run: bundle install
+    - name: Install yarn packages
+      run: |
+        yarn install --pure-lockfile
     - name: Run tests
-      run: bundle exec rspec
+      run: RAILS_ENV=test bundle exec rspec
