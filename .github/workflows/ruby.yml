@@ -17,6 +17,13 @@ jobs:
   test:
 
     runs-on: ubuntu-latest
+    
+    services:
+      redis:
+        image: redis
+        ports:
+        - 6379:6379
+        options: --entrypoint redis-server
 
     steps:
     - uses: actions/checkout@v2
@@ -27,10 +34,11 @@ jobs:
       uses: ruby/setup-ruby@ec106b438a1ff6ff109590de34ddc62c540232e0
       with:
         ruby-version: 2.6   
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
+    - name: Setup PostgreSQL
+      uses: Harmon758/postgresql-action@v1.0.0
       with:
-        version: 12.1.0
+      # POSTGRES_DB - name for the default database that is created
+        postgresql db: rails_cloud_scaffolding_test
     - name: Install dependencies
       run: bundle install
     - name: Run tests
